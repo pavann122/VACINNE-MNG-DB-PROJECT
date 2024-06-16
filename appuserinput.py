@@ -1,3 +1,5 @@
+
+
 import mysql.connector
 
 host = input("Enter MySQL host: ")
