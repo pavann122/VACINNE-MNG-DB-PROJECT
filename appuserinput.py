@@ -1,4 +1,4 @@
-
+//user input approach -Prompt the user for their MySQL credentials at runtime:
 
 import mysql.connector
 
