@@ -7,3 +7,7 @@
    ```bash
    git clone https://github.com/yourusername/VACINNE-MNG-DB-PROJECT.git
    cd VACINNE-MNG-DB-PROJECT
+-------intiate this command on terminal  -----
+pip install mysql-connector-python
+
+   
