@@ -1,15 +1,16 @@
-import configparser
 import mysql.connector as sql
 
-# Read the configuration file
-config = configparser.ConfigParser()
-config.read('config.ini')
+# Prompt user for MySQL credentials
+host = input("Enter MySQL host: ")
+user = input("Enter MySQL username: ")
+password = input("Enter MySQL password: ")
+database = input("Enter MySQL database name: ")
 
 db_config = {
-    'host': config['mysql']['host'],
-    'user': config['mysql']['user'],
-    'password': config['mysql']['password'],
-    'database': config['mysql']['database']
+    'host': host,
+    'user': user,
+    'password': password,
+    'database': database
 }
 
 def crdb():
