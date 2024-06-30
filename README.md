@@ -9,6 +9,7 @@
    cd VACINNE-MNG-DB-PROJECT
 -------intiate this command on terminal  -----
 pip install mysql-connector-python
+pip install matplotlib.pyplot
 
 
 
