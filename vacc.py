@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import mysql.connector as sql
 from io import BytesIO
 import base64
+import pandas as pd 
 
 
 
@@ -206,7 +207,19 @@ def plot_age_distribution():
     plt.tight_layout()
     plt.show()
 
+def save_to_csv():
+    mydb = sql.connect(**db_config)
+    mycur = mydb.cursor()
+    mycur.execute('SELECT * FROM vaccine_management')
+    data = mycur.fetchall()
+    mydb.close()
 
+    if data:
+        df = pd.DataFrame(data, columns=['Name', 'Aadhar_number', 'Vaccine_type', 'Age'])
+        df.to_csv('vaccine_management_data.csv', index=False)
+        print('Data saved to vaccine_management_data.csv')
+    else:
+        print('No data to save')
 while True:
     print('<>'*30)
     print('\t\t\t WELCOME TO VACCINATION MANAGEMENT PROGRAM')
@@ -232,6 +245,7 @@ while True:
     print('Press 18 to exit')
     print('Press 19 to visualize data')
     print('Press 20 to visualize age distribution')
+    print('Press 21 to 21Save Data to CSV file ')
     print('~'*150)
     ch = int(input("Enter your choice: "))
     if ch == 1:
@@ -275,5 +289,7 @@ while True:
         plot_vaccine_distribution()
     elif ch==20:
         plot_age_distribution()
+    elif ch==21:
+        save_to_csv()
     else:
         print('Wrong choice')
