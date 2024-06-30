@@ -245,7 +245,7 @@ while True:
     print('Press 18 to exit')
     print('Press 19 to visualize data')
     print('Press 20 to visualize age distribution')
-    print('Press 21 to 21Save Data to CSV file ')
+    print('Press 21 to Save Data to CSV file ')
     print('~'*150)
     ch = int(input("Enter your choice: "))
     if ch == 1:
