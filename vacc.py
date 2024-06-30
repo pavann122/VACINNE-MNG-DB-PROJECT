@@ -1,4 +1,10 @@
+
+import matplotlib.pyplot as plt
 import mysql.connector as sql
+from io import BytesIO
+import base64
+
+
 
 # Prompt user for MySQL credentials
 host = input("Enter MySQL host: ")
@@ -28,6 +34,7 @@ def showdb():
         print(i)
     mydb.close()
 
+    
 def createtb():
     mydb = sql.connect(**db_config)
     mycur = mydb.cursor()
@@ -162,11 +169,49 @@ def dropdb():
     print("\n\nDatabase dropped successfully\n")
     mydb.close()
 
+
+
+def plot_vaccine_distribution():
+    mydb = sql.connect(**db_config)
+    mycur = mydb.cursor()
+    mycur.execute("SELECT Vaccine_type, COUNT(*) FROM vaccine_management GROUP BY Vaccine_type")
+    data = mycur.fetchall()
+    mydb.close()
+
+    vaccine_types = [row[0] for row in data]
+    counts = [row[1] for row in data]
+
+    plt.figure(figsize=(10, 6))
+    plt.bar(vaccine_types, counts, color='skyblue')
+    plt.xlabel('Vaccine Type')
+    plt.ylabel('Number of Individuals')
+    plt.title('Number of Vaccinated Individuals by Vaccine Type')
+    plt.tight_layout()
+    plt.show()
+
+def plot_age_distribution():
+    mydb = sql.connect(**db_config)
+    mycur = mydb.cursor()
+    mycur.execute("SELECT age FROM vaccine_management")
+    data = mycur.fetchall()
+    mydb.close()
+
+    ages = [row[0] for row in data]
+
+    plt.figure(figsize=(10, 6))
+    plt.hist(ages, bins=10, color='green', edgecolor='black')
+    plt.xlabel('Age')
+    plt.ylabel('Number of Individuals')
+    plt.title('Age Distribution of Vaccinated Individuals')
+    plt.tight_layout()
+    plt.show()
+
+
 while True:
     print('<>'*30)
-    print('\t\t\t WELCOME VACCINATION MANAGEMENT PROGRAM')
+    print('\t\t\t WELCOME TO VACCINATION MANAGEMENT PROGRAM')
     print('<>'*30)
-    print('~'*50)
+    print('~'*150)
     print('Press 1 to create database')
     print('Press 2 to display databases')
     print('Press 3 to create table')
@@ -185,7 +230,9 @@ while True:
     print('Press 16 to count all the entries')
     print('Press 17 to drop database')
     print('Press 18 to exit')
-    print('~'*50)
+    print('Press 19 to visualize data')
+    print('Press 20 to visualize age distribution')
+    print('~'*150)
     ch = int(input("Enter your choice: "))
     if ch == 1:
         crdb()
@@ -224,5 +271,9 @@ while True:
     elif ch == 18:
         print('Thank you\nStay safe and healthy')
         break
+    elif ch==19:
+        plot_vaccine_distribution()
+    elif ch==20:
+        plot_age_distribution()
     else:
         print('Wrong choice')
