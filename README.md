@@ -1,4 +1,10 @@
 
+Added new functionalities to this project that are mentioned below :
+
+Data Visualization Features:
+
+Vaccine Distribution Visualization: Created bar charts to display the number of individuals vaccinated with different types of vaccines.
+Age Distribution Visualization: Developed histograms to show the age distribution of vaccinated individuals.
 # Vaccine Management Project
 
 ## Setup Instructions
