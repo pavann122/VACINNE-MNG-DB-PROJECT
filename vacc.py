@@ -188,6 +188,7 @@ def plot_vaccine_distribution():
     plt.ylabel('Number of Individuals')
     plt.title('Number of Vaccinated Individuals by Vaccine Type')
     plt.tight_layout()
+
     plt.show()
 
 def plot_age_distribution():
